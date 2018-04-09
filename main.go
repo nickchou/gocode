@@ -10,6 +10,7 @@ func main() {
 	app.AutoRouter(&controller.IndexController{})
 	app.AutoRouter(&controller.CalController{})
 	app.AutoRouter(&controller.CommController{})
+	app.AutoRouter(&controller.CalendarController{})
 	app.Router("login", &controller.LoginController{})
 	app.RunOn(":9090")
 }
