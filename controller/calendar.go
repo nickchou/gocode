@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/nickchou/gocode/app"
-	"github.com/nickchou/gocode/dataaccess"
+	//"github.com/nickchou/gocode/dataaccess"
 	"github.com/nickchou/gocode/model"
 )
 
@@ -33,7 +33,7 @@ func (con *CalendarController) Get() {
 	//new 一个实体
 	pro := model.SGPProductBaseInfo{PBIOldProductId: productid, PBIBelong: 2}
 	//DB:获取基本信息
-	dataaccess.GetProduct(&pro)
+	//dataaccess.GetProduct(&pro)
 
 	//buffer
 	buffer.WriteString(strconv.Itoa(productid) + "<br/>")

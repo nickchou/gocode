@@ -42,9 +42,9 @@ func getproductSingleRelated(db *sql.DB, calm model.CalendarModel) {
 	for rows.Next() {
 		prosin := model.SGPProductSingleRelated_New{}
 		rows.Scan(&prosin.PSRId, &prosin.PSRProductId, &prosin.PSRResourceId, &prosin.PSRType, &prosin.PSRIsMustChoose, &prosin.PSRUseDays)
-		append(calm.ProSingleRel, prosin)
-		for index, value := range calm.ProSingleRel {
-			fmt.Println(index)
-		}
+		//		append(calm.ProSingleRel, prosin)
+		//		for index, value := range calm.ProSingleRel {
+		//			fmt.Println(index)
+		//		}
 	}
 }
