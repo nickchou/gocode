@@ -11,6 +11,7 @@ func main() {
 	app.AutoRouter(&controller.CalController{})
 	app.AutoRouter(&controller.CommController{})
 	app.AutoRouter(&controller.CalendarController{})
+	app.AutoRouter(&controller.ZhuzherController{})
 	app.Router("login", &controller.LoginController{})
 	app.RunOn(":9090")
 }
