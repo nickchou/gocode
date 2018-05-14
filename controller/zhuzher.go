@@ -35,7 +35,7 @@ func (con *ZhuzherController) Project() {
 		if err != nil {
 			defer resp.Body.Close()
 			body, _ := ioutil.ReadAll(resp.Body)
-			//json反序列化
+			//json反序列化项目信息
 			var pro Project
 			if err := json.Unmarshal(body, &pro); err == nil {
 				if pro.Code == 0 {
