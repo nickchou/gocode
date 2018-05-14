@@ -11,12 +11,12 @@ import (
 	"github.com/nickchou/gocode/app"
 )
 
-//ZhuzherController 住这儿测试接口
+//ZhuzherController zhuzher测试接口
 type ZhuzherController struct {
 	app.App
 }
 
-//Project 抓取住这儿的project信息
+//Project 获取zhuzher的project信息
 func (con *ZhuzherController) Project() {
 	var bf bytes.Buffer
 	//table相关
@@ -25,7 +25,7 @@ func (con *ZhuzherController) Project() {
 	bf.WriteString("<table>")
 	bf.WriteString("<tr><td>index</td><td>city</td><td>project code</td><td>project name</td><td>stage</td></tr>")
 
-	//住这儿所有的城市code 66 items,from=https://flyingdutchman.4009515151.com/api/zhuzher/cities
+	//zhuzher所有的城市code 66 items,from=https://flyingdutchman.4009515151.com/api/zhuzher/cities
 	var citys = [...]int{210300, 469029, 110000, 220100, 430100, 320400, 510100, 500000, 210200, 469007, 441900, 440600, 210400, 350100, 440100, 520100, 230100, 460100, 330100, 340100, 441300, 330400, 220200, 370100, 140700, 530100, 131000, 469024, 360100, 511300, 320100, 450100, 320600, 330200, 350300, 370200, 441800, 130300, 350500, 350400, 460200, 310000, 330600, 210100, 440300, 320500, 140100, 331000, 130200, 120000, 330300, 420100, 340200, 650100, 320200, 350200, 610100, 320300, 321000, 370600, 210800, 350600, 410100, 321100, 442000, 440400}
 	index := 0
 	//遍历所有城市
@@ -55,13 +55,13 @@ func (con *ZhuzherController) Project() {
 	io.WriteString(con.W(), bf.String())
 }
 
-//Project 住这儿的小区实体信息
+//Project zhuzher的小区实体信息
 type Project struct {
 	Code    int32    `json:"code"`
 	Results []Result `json:"result"`
 }
 
-//Result 接口返回的实体定义
+//Result zhuzher接口返回的Result实体定义
 type Result struct {
 	Code1 string `json:"code"`
 	Name  string `json:"name"`
