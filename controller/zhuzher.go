@@ -11,11 +11,12 @@ import (
 	"github.com/nickchou/gocode/app"
 )
 
+//ZhuzherController 住这儿测试接口
 type ZhuzherController struct {
 	app.App
 }
 
-//抓取住这儿的project信息
+//Project 抓取住这儿的project信息
 func (con *ZhuzherController) Project() {
 	var bf bytes.Buffer
 	//table相关
@@ -30,21 +31,23 @@ func (con *ZhuzherController) Project() {
 	//遍历所有城市
 	for _, city := range citys {
 		//根据city code拿到project信息
-		resp, _ := http.Get(fmt.Sprintf("https://flyingdutchman.4009515151.com/api/zhuzher/projects?city_code=%v", city))
-		defer resp.Body.Close()
-		body, _ := ioutil.ReadAll(resp.Body)
-		//json反序列化
-		var pro Project
-		if err := json.Unmarshal(body, &pro); err == nil {
-			if pro.Code == 0 {
-				//遍历json的返回结果
-				for _, p := range pro.Results {
-					index++
-					bf.WriteString(fmt.Sprintf("<tr><td>%v</td><td>%v</td><td>%v</td><td>%v</td><td>%v</td></tr>", index, city, p.Code1, p.Name, p.Stage))
+		resp, err := http.Get(fmt.Sprintf("https://flyingdutchman.4009515151.com/api/zhuzher/projects?city_code=%v", city))
+		if err != nil {
+			defer resp.Body.Close()
+			body, _ := ioutil.ReadAll(resp.Body)
+			//json反序列化
+			var pro Project
+			if err := json.Unmarshal(body, &pro); err == nil {
+				if pro.Code == 0 {
+					//遍历json的返回结果
+					for _, p := range pro.Results {
+						index++
+						bf.WriteString(fmt.Sprintf("<tr><td>%v</td><td>%v</td><td>%v</td><td>%v</td><td>%v</td></tr>", index, city, p.Code1, p.Name, p.Stage))
+					}
 				}
+			} else {
+				fmt.Println(err)
 			}
-		} else {
-			fmt.Println(err)
 		}
 	}
 	//table
@@ -52,11 +55,13 @@ func (con *ZhuzherController) Project() {
 	io.WriteString(con.W(), bf.String())
 }
 
-//住这儿的porject实体信息
+//Project 住这儿的小区实体信息
 type Project struct {
 	Code    int32    `json:"code"`
 	Results []Result `json:"result"`
 }
+
+//Result 接口返回的实体定义
 type Result struct {
 	Code1 string `json:"code"`
 	Name  string `json:"name"`

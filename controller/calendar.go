@@ -12,10 +12,12 @@ import (
 	"github.com/nickchou/gocode/model"
 )
 
+//CalendarController 日历控制器
 type CalendarController struct {
 	app.App
 }
 
+//Get 提交方式
 func (con *CalendarController) Get() {
 
 	//计算代码耗时

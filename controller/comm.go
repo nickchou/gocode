@@ -10,10 +10,12 @@ import (
 	"github.com/nickchou/gocode/app"
 )
 
+//CommController 公共控制器，执行通用方法
 type CommController struct {
 	app.App
 }
 
+//Quxian 测试方法，goquery获取文章列表
 func (con *CommController) Quxian() {
 	var buffer bytes.Buffer
 	con.W().Header().Set("content-type", "text/html; charset=utf-8")
@@ -28,6 +30,8 @@ func (con *CommController) Quxian() {
 	})
 	io.WriteString(con.W(), buffer.String())
 }
+
+//Country 获取维基百科里的国家信息
 func (con *CommController) Country() {
 	//wiki下载国家图片地址参考https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg
 	var buffer bytes.Buffer

@@ -10,10 +10,12 @@ import (
 	"github.com/nickchou/gocode/model"
 )
 
+// IndexController 整个项目默认的控制器
 type IndexController struct {
 	app.App
 }
 
+//Index IndexController默认的执行方法名
 func (con *IndexController) Index() {
 	con.Data["name"] = "张三"
 	con.Data["email"] = "zhangsan@163.com"
@@ -29,6 +31,8 @@ func (con *IndexController) Index() {
 	//con.Display("./view/info.tpl", "./view/header.tpl", "./view/footer.tpl")
 	//con.DisplayWithFuncs(template.FuncMap{"look": funcs.Lookup}, "./view/info.tpl", "./view/header.tpl", "./view/footer.tpl")
 }
+
+//Sec 一个测试方法实际无用
 func (con *IndexController) Sec() {
 	//设置context-type
 	con.W().Header().Set("content-type", "text/html; charset=utf-8")
