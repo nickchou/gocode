@@ -30,12 +30,13 @@ func (con *ZhuzherController) Project() {
 	index := 0
 	//遍历所有城市
 	for _, city := range citys {
-		//根据city code拿到project信息
+		//根据city_code拿到project信息
 		resp, err := http.Get(fmt.Sprintf("https://flyingdutchman.4009515151.com/api/zhuzher/projects?city_code=%v", city))
+		//判断err
 		if err != nil {
 			defer resp.Body.Close()
 			body, _ := ioutil.ReadAll(resp.Body)
-			//json反序列化
+			//json反序列化项目信息
 			var pro Project
 			if err := json.Unmarshal(body, &pro); err == nil {
 				if pro.Code == 0 {
