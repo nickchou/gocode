@@ -9,10 +9,12 @@ import (
 	"github.com/nickchou/gocode/comm"
 )
 
+//CalController 定义日历控制器
 type CalController struct {
 	app.App
 }
 
+//Index 日历控制器默认的执行方法
 func (con *CalController) Index() {
 
 	//方式一
